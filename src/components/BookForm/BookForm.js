@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import { getBooks, postBook } from '../../services/books.service';
 
 class BookForm extends Component {
 
@@ -34,7 +33,6 @@ class BookForm extends Component {
       url: '/books',
       data: bookInfo
     })
-    // postBook(bookInfo)
       .then((response) => {
         this.props.getBooksMethod();
       })

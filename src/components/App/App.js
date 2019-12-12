@@ -6,8 +6,6 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import BookList from '../BookList/BookList';
 import BookForm from '../BookForm/BookForm';
 
-// import { getBooks } from '../../services/books.service';
-
 import './App.css';
 
 
