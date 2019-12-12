@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { getBooks, postBook } from '../../services/books.service';
+import { postBook } from '../../services/books.service';
 
 class BookForm extends Component {
 

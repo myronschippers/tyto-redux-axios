@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
@@ -6,7 +5,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import BookList from '../BookList/BookList';
 import BookForm from '../BookForm/BookForm';
 
-// import { getBooks } from '../../services/books.service';
+import { getBooks } from '../../services/books.service';
 
 import './App.css';
 
@@ -19,10 +18,7 @@ class App extends Component {
 
   // TODO - GET Book List from server
   getBooksMethod = () => {
-    axios({
-      method: 'GET',
-      url: '/books'
-    })
+    getBooks()
       .then(response => {
         console.log(response.data);
         this.props.dispatch({
