@@ -28,9 +28,6 @@ function postBook(bookInfo) {
       console.log('PUT:', response);
       return getBooks();
     })
-    // .then((getResponse) => {
-
-    // })
     .catch((err) => {
       alert('Hey sorry, something went terribly wrong saving your book.')
       console.log(err);
