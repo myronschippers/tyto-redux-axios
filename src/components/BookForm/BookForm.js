@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import axios from 'axios';
 
 class BookForm extends Component {
 
@@ -23,7 +24,6 @@ class BookForm extends Component {
     event.preventDefault();
     console.log(`Adding book`, this.state.newBook);
     // TODO - axios request to server to add book
-
   }
 
   render() {

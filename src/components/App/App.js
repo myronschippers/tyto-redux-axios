@@ -1,4 +1,7 @@
+import axios from 'axios';
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 import BookList from '../BookList/BookList';
 import BookForm from '../BookForm/BookForm';
@@ -8,7 +11,28 @@ import './App.css';
 
 class App extends Component {
 
+  componentDidMount() {
+    this.getBooks();
+  }
+
   // TODO - GET Book List from server
+  getBooks() {
+    axios({
+      method: 'GET',
+      url: '/books'
+    })
+    .then(response => {
+      console.log(response.data);
+      this.props.dispatch({
+        type: 'SET_BOOKS',
+        payload: response.data,
+      })
+    })
+    .catch((err) => {
+      alert('Hey sorry, something went terribly wrong.')
+      console.log(err);
+    })
+  }
 
   render() {
     return (
@@ -23,4 +47,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(mapStoreToProps)(App);
