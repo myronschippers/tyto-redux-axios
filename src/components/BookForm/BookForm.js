@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import { getBooks, postBook } from '../../services/books.service';
 
 class BookForm extends Component {
 
@@ -24,6 +25,23 @@ class BookForm extends Component {
     event.preventDefault();
     console.log(`Adding book`, this.state.newBook);
     // TODO - axios request to server to add book
+    this.postBook(this.state.newBook);
+  }
+
+  postBook(bookInfo) {
+    axios({
+      method: 'POST',
+      url: '/books',
+      data: bookInfo
+    })
+    // postBook(bookInfo)
+      .then((response) => {
+        this.props.getBooksMethod();
+      })
+      .catch((err) => {
+        alert('Hey sorry, something went terribly wrong saving your book.')
+        console.log(err);
+      });
   }
 
   render() {

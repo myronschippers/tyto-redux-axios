@@ -6,32 +6,34 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import BookList from '../BookList/BookList';
 import BookForm from '../BookForm/BookForm';
 
+// import { getBooks } from '../../services/books.service';
+
 import './App.css';
 
 
 class App extends Component {
 
   componentDidMount() {
-    this.getBooks();
+    this.getBooksMethod();
   }
 
   // TODO - GET Book List from server
-  getBooks() {
+  getBooksMethod = () => {
     axios({
       method: 'GET',
       url: '/books'
     })
-    .then(response => {
-      console.log(response.data);
-      this.props.dispatch({
-        type: 'SET_BOOKS',
-        payload: response.data,
+      .then(response => {
+        console.log(response.data);
+        this.props.dispatch({
+          type: 'SET_BOOKS',
+          payload: response.data,
+        })
       })
-    })
-    .catch((err) => {
-      alert('Hey sorry, something went terribly wrong.')
-      console.log(err);
-    })
+      .catch((err) => {
+        alert('Hey sorry, something went terribly wrong.')
+        console.log(err);
+      });
   }
 
   render() {
@@ -39,7 +41,7 @@ class App extends Component {
         <div className="App">
           <header><h1>Books w/ Redux!</h1></header>
           <main>
-            <BookForm />
+            <BookForm getBooksMethod={this.getBooksMethod} />
             <BookList />
           </main>
         </div>
